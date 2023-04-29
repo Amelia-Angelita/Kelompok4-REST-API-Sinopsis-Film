@@ -95,9 +95,9 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function destroy($id_films)
+     public function destroy($id)
     {
-        $film = film::where('id_films',$id_films)->delete();
+        $film = film::where('id_films',$id)->delete();
         if($film) {
             return response()->json(['message' => 'Film Deleted, OK'], 200);
         } else{
