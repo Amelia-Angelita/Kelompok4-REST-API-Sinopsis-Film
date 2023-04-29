@@ -16,14 +16,7 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $films = Film::all();
-        // return FilmResource::collection($films);
-
-        if($films) {
-            return ApiFormatter::createApi(200, 'OK', $films);
-        } else {
-            return ApiFormatter::createApi(404, 'Data not Found');
-        }
+        //
     }
 
     /**
@@ -44,21 +37,7 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required',
-            'genre' => 'required',
-            'film_image' => 'required',
-            'rating' => 'required',
-            'description' => 'required',
-        ]);
-
-        $films = Film::create($request->all());
-        
-        if($films) {
-            return ApiFormatter::createApi(200, 'OK', $films);
-        } else {
-            return ApiFormatter::createApi(404, 'Data not Found');
-        }
+        //
     }
 
     /**
@@ -69,13 +48,7 @@ class FilmController extends Controller
      */
     public function show($id)
     {
-        $films = Film::findOrFail($id);
-        
-        if($films) {
-            return ApiFormatter::createApi(200, 'OK', $films);
-        } else {
-            return ApiFormatter::createApi(404, 'Data not Found');
-        }
+        //
     }
 
     /**
@@ -124,13 +97,6 @@ class FilmController extends Controller
      */
     public function destroy($id)
     {
-        $films = Film::findOrFail($id);
-        $films->delete();
-        
-        if($films) {
-            return ApiFormatter::createApi(200, 'OK', $films);
-        } else {
-            return ApiFormatter::createApi(404, 'Data not Found');
-        }
+        //
     }
 }
