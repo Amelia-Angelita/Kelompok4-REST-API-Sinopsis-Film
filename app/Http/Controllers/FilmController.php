@@ -97,12 +97,10 @@ class FilmController extends Controller
      */
      public function destroy($id_films)
     {
-        $films = Film::where('id_films',$id_films)->delete();
-        
-        if($films) {
-            return ApiFormatter::createApi(200, 'Film deleted!', $films);
-        } else {
-            eturn ApiFormatter::createApi(404, 'Data Not Found');
-        }
+        $film = film::where('id_films',$id_films)->delete();
+        if($film) {
+            return response()->json(['message' => 'Film Deleted, OK'], 200);
+        } else{
+            return response()->json(['message' => 'Request Failed'], 400);
     }
 }
