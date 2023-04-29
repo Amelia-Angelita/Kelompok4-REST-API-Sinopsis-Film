@@ -16,8 +16,17 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //
-    }
+    
+        $films = Film::all();
+        // return FilmResource::collection($films);
+
+        if($films) {
+            return ApiFormatter::createApi(200, 'OK', $films);
+        } else {
+            return ApiFormatter::createApi(404, 'Data not Found');
+        }
+    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +57,13 @@ class FilmController extends Controller
      */
     public function show($id)
     {
-        //
+        $films = Film::findOrFail($id);
+        
+        if($films) {
+            return ApiFormatter::createApi(200, 'OK', $films);
+        } else {
+            return ApiFormatter::createApi(404, 'Data not Found');
+        }
     }
 
     /**
