@@ -44,10 +44,24 @@ class FilmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'title' => 'required',
+            'genre' => 'required',
+            'film_image' => 'required',
+            'rating' => 'required',
+            'description' => 'required',
+        ]);
+
+        $films = Film::create($request->all());
+        
+        if($films) {
+            return ApiFormatter::createApi(200, 'OK', $films);
+        } else {
+            return ApiFormatter::createApi(404, 'Data not Found');
+        }
+    }
 
     /**
      * Display the specified resource.
